@@ -61,6 +61,7 @@ class Register extends Component {
           .then(res => {
               if(res.ok){
                alert("pomyślnie zarejestrowano");
+               this.props.history.push('login')
               }
              else{
                  alert("błąd rejestracji");

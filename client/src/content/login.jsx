@@ -54,6 +54,7 @@ class Login extends Component {
       .then(res => {
           if(res.ok){
            alert("pomyślnie zalogowano");
+           this.props.history.push('/main')
           }
          else{
              alert("błąd logowania");

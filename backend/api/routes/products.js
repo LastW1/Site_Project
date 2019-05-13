@@ -99,12 +99,8 @@ router.get("/:productId", (req, res, next) => {
 
 router.patch("/:productId", (req, res, next) => {
   const id = req.params.productId;
-  //const updateOps = {};
- // for (const ops of req.body) {
-  //  updateOps[ops.propName] = ops.value;
- // }
- // Product.update({ _id: id }, { $set: updateOps })
-  Product.update({ _id: id }, { $set:{ rate:req.body.rate , rate_count:req.body.rate_count}})
+//TUTAJ CHCĘ rate_count:rate++
+  Product.update({ _id: id }, { $set:{ rate: req.body.rate/2 , rate_count:2}})
     .exec()
     .then(result => {
       console.log(result);
