@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import "./library.css";
-import { Button,Row,Col,Container,Dropdown } from 'react-bootstrap';
+import { Button,Row,Col,Container,Dropdown} from 'react-bootstrap';
 import StarRatingComponent from 'react-star-rating-component';
 
 
+
+
+var textStyle = {
+    color: "white"
+}
 
 class Library extends Component {
     constructor() {
@@ -22,7 +27,7 @@ class Library extends Component {
     }
 
 
-
+   
 
 
 componentDidMount(){
@@ -42,7 +47,6 @@ handleClick(change){
     console.log(this.state.category);
     this.componentDidMount();
 }
-
 
  onStarClick(nextValue, prevValue, name) {
 
@@ -68,8 +72,8 @@ render()
  {
 
         return (
-     
-<Container >
+        
+<Container style = {{margin:"20px"}}>
     
    <Row>
    <Dropdown>
@@ -94,7 +98,7 @@ render()
        this.state.text.map((dynamicData, i) =>
      
        <Row key={i}>
-       <Col xs={3}>{dynamicData.name}</Col>
+       <Col style={textStyle} xs={3}>{dynamicData.name}</Col>
        <Button 
        onClick={()=>{ alert('dokonano zakupu\nkod aktywacyjny: ' +(dynamicData._id)); }}
        xs={6}>
@@ -115,6 +119,7 @@ render()
    }
        
 </Container>
+ 
 
 
         )};

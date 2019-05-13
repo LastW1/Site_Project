@@ -5,6 +5,9 @@ import {
   Button,
 } from 'reactstrap';
 
+const textStyle = {
+  color: "white"
+}
 
 const buttonStyle = {
   width: '200px',
@@ -69,7 +72,7 @@ class Login extends Component {
 
   render() {
     return (
-        <div >
+        <div>
 
           {this.state.res && (
               <div>
@@ -80,7 +83,7 @@ class Login extends Component {
         <Form onSubmit={this.handleSubmit}>
           <Col>
             <FormGroup>
-              <Label>Login</Label>
+              <Label style = {textStyle}>Login</Label>
               <Input
               style = {inputStyle}
                 onChange = {this.handleLogin.bind(this)}
@@ -93,7 +96,7 @@ class Login extends Component {
           </Col>
           <Col>
             <FormGroup>
-              <Label for="examplePassword">Password</Label>
+              <Label for="examplePassword" style = {textStyle}>Password</Label>
               <Input
                 onChange = {this.handlePassword.bind(this)}
                 style = {inputStyle}

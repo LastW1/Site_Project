@@ -6,8 +6,10 @@ import {
 } from 'reactstrap';
 import "./register.css";
 
-
-
+const textStyle = {
+    color: "white"
+  }
+  
 const buttonStyle = {
     width: '200px',
     marginLeft: '17%',
@@ -92,7 +94,7 @@ class Register extends Component {
 
     render() {
         return (
-            <div >
+            <div>
                 {this.state.res && (
                     <div>
                         {alert(this.state.res)}
@@ -102,7 +104,7 @@ class Register extends Component {
                     <Form onSubmit={this.handleSubmit} >
                         <Col>
                             <FormGroup>
-                                <Label>Nazwa Użytkownika</Label>
+                                <Label style = {textStyle}>Nazwa Użytkownika</Label>
                                 <Input
                                     onChange = {this.handleLogin.bind(this)}
                                     style = {inputStyle}
@@ -115,7 +117,7 @@ class Register extends Component {
                         </Col>
                         <Col>
                             <FormGroup>
-                                <Label>Email</Label>
+                                <Label style = {textStyle}>Email</Label>
                                 <Input
                                     onChange = {this.handleEmail.bind(this)}
                                     style = {inputStyle}
@@ -128,7 +130,7 @@ class Register extends Component {
                         </Col>
                         <Col>
                             <FormGroup>
-                                <Label for="examplePassword">Hasło</Label>
+                                <Label for="examplePassword" style = {textStyle}>Hasło</Label>
                                 <Input
                                     onChange = {this.handlePassword.bind(this)}
                                     style = {inputStyle}

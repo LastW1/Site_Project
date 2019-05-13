@@ -57,9 +57,6 @@ export default class Example extends React.Component {
 
                 <Nav  className="ml-auto" navbar>
                     <NavItem>
-                        <NavLink style={textColor} >Gry</NavLink>
-                    </NavItem>
-                    <NavItem>
                         <NavLink style={textColor}href="/login" >Login</NavLink>
                     </NavItem>
                     <NavItem>
