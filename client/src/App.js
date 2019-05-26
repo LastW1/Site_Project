@@ -9,7 +9,19 @@ import Login from './content/login';
 import Library from './content/library';
 import Register from './content/register';
 import StartPage from './content/startPage';
+import AlreadyLoged from './content/alreadyLoged';
+import NotLoged from './content/notLoged';
 import {BrowserRouter, Route, Switch} from "react-router-dom";
+
+
+
+const style = {
+           backgroundImage: `url(${ Background })`,
+           height: '100vh',
+           backgroundPosition: 'center',
+           backgroundRepeat: 'no-repeat',
+           backgroundSize: 'cover',
+          };
 
 
 class App extends Component {
@@ -18,13 +30,7 @@ class App extends Component {
 
     render() {
 
-        const style = {
-           backgroundImage: `url(${ Background })`,
-           height: '100vh',
-           backgroundPosition: 'center',
-           backgroundRepeat: 'no-repeat',
-           backgroundSize: 'cover',
-          };
+        
 
         return (
             <BrowserRouter>
@@ -35,6 +41,8 @@ class App extends Component {
                         <Route path="/register" component={Register}/>
                         <Route path="/main" component={StartPage}/>
                         <Route path="/library" component={Library}/>
+                        <Route path="/alreadyLoged" component={AlreadyLoged}/>
+                        <Route path="/notLoged" component={NotLoged}/>
                         <Route component={Error}/>
                     </Switch>
                     <Footer/>

@@ -96,7 +96,7 @@ router.get("/:productId", (req, res, next) => {
 
 
 
-
+//find and update
 router.patch("/:productId", (req, res, next) => {
   const id = req.params.productId;
 //TUTAJ CHCĘ rate_count:rate++

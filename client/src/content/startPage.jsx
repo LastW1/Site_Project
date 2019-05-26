@@ -2,11 +2,6 @@ import React, { Component } from 'react';
 import { Col,Container,Alert} from 'react-bootstrap';
 import { FaFacebook, FaTwitter, FaTwitch, FaYoutube, FaInstagram} from 'react-icons/fa';
 
-const helloStyle = {
-        color: "white",
-        //position: "center"
-
-      }
 
 function facebookClick(e) {
         e.preventDefault();

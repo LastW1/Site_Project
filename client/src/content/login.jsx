@@ -4,7 +4,9 @@ import {
   FormGroup, Label, Input,
   Button,
 } from 'reactstrap';
+import AuthService from './AuthService';
 
+//http basic out do logowania
 const textStyle = {
   color: "white"
 }
@@ -33,6 +35,7 @@ class Login extends Component {
         super();
         this.state = {login:"", password:""};
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.Auth = new AuthService();
     }
 
   handleLogin(event){
@@ -43,32 +46,24 @@ class Login extends Component {
       this.setState({password: event.target.value})
   }
 
-  handleSubmit(event){ 
-    event.preventDefault();
-  
-    fetch('http://localhost:3001/login', {
-        method:'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body:JSON.stringify({login:this.state.login, password:this.state.password})
-      })
+  handleSubmit(e){
+    e.preventDefault();
+    this.Auth.login(this.state.login, this.state.password)
       .then(res => {
-          if(res.ok){
-           alert("pomyślnie zalogowano");
-           this.props.history.push('/main')
-          }
-         else{
-             alert("błąd logowania");
-         }
-
+        this.props.history.replace('/main');
       })
-      .then(function(res){ console.log(res) })
-      .catch(function(res){ console.log(res) })
-    
-   
-   };
+      .catch(err =>{
+        alert(err);
+      })
+  }
+
+  componentWillMount(){
+    if(this.Auth.loggedIn()){
+   // console.log("jesteś już zalogowany");
+    this.props.history.replace('/alreadyLoged')
+    }
+  }
+
 
   render() {
     return (

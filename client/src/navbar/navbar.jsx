@@ -1,16 +1,15 @@
 import logo from '../img/logo_project.png';
 import React from 'react';
-
-
 import {
     Navbar,
-    NavbarToggler,
-    NavbarBrand,
     Nav,
     NavItem,
     NavLink,
 
 } from 'reactstrap';
+import AuthService from '../content/AuthService';
+
+
 
 const navBarStyle = {
     background: "rgba(15, 132, 102, 1)",
@@ -29,15 +28,31 @@ const imgDimension = {
 
 };
 
+
+
+
 export default class Example extends React.Component {
     constructor(props) {
         super(props);
-
+        this.Auth = new AuthService();
         this.toggle = this.toggle.bind(this);
         this.state = {
             isOpen: false
         };
     }
+
+    handleLogout(){
+        if(this.Auth.loggedIn()){
+            this.Auth.logout();
+            alert("wylogowano");
+           // this.props.history.replace('/main');
+        }
+        else{
+            alert("nie jesteś zalogowany");
+        }
+     }
+  
+
 
     toggle() {
         this.setState({
@@ -49,13 +64,14 @@ export default class Example extends React.Component {
         return (
             <div>
             <Navbar style={navBarStyle} light expand="md">
-                <NavbarBrand onClick={this.toggle} className="container-fluid" href="/main"><img src={logo} alt={"logo"}
-               style={imgDimension}/>
-                </NavbarBrand >
-                <NavbarToggler />
-
+             
+                    <NavLink href="/main" >  <img src={logo}  alt={"logo"} style={imgDimension}/></NavLink>
 
                 <Nav  className="ml-auto" navbar>
+                    
+                    <NavItem>
+                        <NavLink href="" style={textColor} onClick={this.handleLogout.bind(this)} >Logout</NavLink>
+                    </NavItem>
                     <NavItem>
                         <NavLink style={textColor}href="/login" >Login</NavLink>
                     </NavItem>

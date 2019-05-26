@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import "./library.css";
 import { Button,Row,Col,Container,Dropdown} from 'react-bootstrap';
 import StarRatingComponent from 'react-star-rating-component';
-
+import AuthService from './AuthService';
 
 
 
@@ -21,53 +21,70 @@ class Library extends Component {
             category:""
         
         };
+        this.Auth = new AuthService();
        // this.handleSubmit = this.handleSubmit.bind(this);
         //this.handlEmail = this.handlEmail.bind(this);
       
     }
 
-
+    /*componentWillMount(){
+        if(this.Auth.loggedOut()){
+       // console.log("jesteś już zalogowany");
+        this.props.history.replace('/notLoged')
+        }
+      }*/
    
 
 
-componentDidMount(){
-    console.log("http://localhost:3001/products"+this.state.category);
-    fetch("http://localhost:3001/products"+this.state.category)
-    .then(res => res.json())
-   // .then(data => console.log(data))
-    .then(data => this.setState({text:data}))
-    .catch(err => console.log(err))
-}
+    componentDidMount(){
 
-handleClick(change){
-    
-    console.log("zmiana kategorii");
-   // this.setState({category:change});
-    this.state.category = change;
-    console.log(this.state.category);
-    this.componentDidMount();
-}
+        console.log("http://localhost:3001/products"+this.state.category);
+        fetch("http://localhost:3001/products"+this.state.category)
+        .then(res => res.json())
+    // .then(data => console.log(data))
+        .then(data => this.setState({text:data}))
+        .catch(err => console.log(err))
+    }
 
- onStarClick(nextValue, prevValue, name) {
+    handleClick(change){
+        
+        console.log("zmiana kategorii");
+       // this.setState({category:change});
+       // eslint-disable-next-line
+        this.state.category = change;
+        console.log(this.state.category);
+        this.componentDidMount();
 
-      console.log(this.state.count);
-      console.log(nextValue);
-      console.log(prevValue);
-      console.log(name);
-    fetch('http://localhost:3001/products/'+name, {
-        method:'PATCH',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body:JSON.stringify({rate:nextValue+prevValue})
-      })
+    }
 
-      .then(function(res){ console.log(res) })
-      .catch(function(res){ console.log(res) })
-  }
+    onStarClick(nextValue, prevValue, name) {
 
+        console.log(this.state.count);
+        console.log(nextValue);
+        console.log(prevValue);
+        console.log(name);
+        fetch('http://localhost:3001/products/'+name, {
+            method:'PATCH',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body:JSON.stringify({rate:nextValue+prevValue})
+        })
 
+        .then(function(res){ console.log(res) })
+        .catch(function(res){ console.log(res) })
+        window.location.reload();
+    }
+
+    handleBuy(){
+        if (!this.Auth.loggedIn()) {
+            this.props.history.replace('/notLoged')
+        }
+        else{
+        alert('dokonano zakupu\nkod aktywacyjny: +jestem generatorm klucza+');
+        }
+    }
 render()
  {
 
@@ -100,7 +117,7 @@ render()
        <Row key={i}>
        <Col style={textStyle} xs={3}>{dynamicData.name}</Col>
        <Button 
-       onClick={()=>{ alert('dokonano zakupu\nkod aktywacyjny: ' +(dynamicData._id)); }}
+       onClick={()=>this.handleBuy()}
        xs={6}>
        {dynamicData.price}zł
        </Button>
