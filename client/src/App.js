@@ -11,6 +11,7 @@ import Register from './content/register';
 import StartPage from './content/startPage';
 import AlreadyLoged from './content/alreadyLoged';
 import NotLoged from './content/notLoged';
+import Admin from './content/admin';
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 
 
@@ -43,6 +44,7 @@ class App extends Component {
                         <Route path="/library" component={Library}/>
                         <Route path="/alreadyLoged" component={AlreadyLoged}/>
                         <Route path="/notLoged" component={NotLoged}/>
+                        <Route path="/admin" component={Admin}/>
                         <Route component={Error}/>
                     </Switch>
                     <Footer/>
